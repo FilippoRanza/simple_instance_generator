@@ -30,7 +30,7 @@ class TestMapGenerator(unittest.TestCase):
         self.assertEqual(len(patients), PATIENTS)
         self.assertEqual(map_obj.y, SY)
         self.assertEqual(map_obj.y, SY)
-
+        self.assertEqual(map_obj.patients_count(), PATIENTS)
 
     def test_size_error(self):
         try:

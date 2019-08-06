@@ -13,4 +13,5 @@ class Map:
     def set_patients(self, patients):
         self.patients = patients
 
-
+    def patients_count(self):
+        return len(self.patients)

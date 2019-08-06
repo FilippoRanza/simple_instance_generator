@@ -9,6 +9,9 @@ class ServiceContainer:
 
     def set_services(self, service):
         self.service = service
+
+    def service_count(self):
+        return len(self.service)
     
 
 def make_service(tmin, tmax):

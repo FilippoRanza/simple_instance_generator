@@ -54,6 +54,7 @@ class TestServiceGenerator(unittest.TestCase):
         self.assertLessEqual(max(services), tmax)
         self.assertGreaterEqual(min(services), tmin)
 
+        self.assertEqual(service.service_count(), count)
 
 if __name__ == "__main__":
     unittest.main()
