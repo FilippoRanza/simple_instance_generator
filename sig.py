@@ -42,7 +42,7 @@ def conf_arg_parser():
     out.add_argument('--sizey', type=int, default=DEFAULT_SIZE_Y,
                      help=f'set number of rows in the grid, default {DEFAULT_SIZE_Y}')
 
-    out.add_argument('--non_unique', default=True,
+    out.add_argument('--non-unique', default=True,
                      action='store_false' ,
                      help='allow non unique patients')
 
