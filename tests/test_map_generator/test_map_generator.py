@@ -38,7 +38,7 @@ class TestMapGenerator(unittest.TestCase):
             map_generator(SX, SY, max_count, True, 1)
         except ValueError:
             self.fail('should not raise error here')
-    
+
         min_error_count = (SX * SY)
         self.assertRaises(ValueError, map_generator, SX, SY, min_error_count, True, 1)
 

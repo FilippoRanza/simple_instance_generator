@@ -18,7 +18,7 @@ class TestContainerWrapper(unittest.TestCase):
                 container.insert(i)
         except AttributeError:
             self.fail('this should be a set...')
-        
+
         self.assertEqual(len(container.data), 10)
 
     def test_non_unique(self):
