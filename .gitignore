@@ -4,3 +4,4 @@ simple_instance_generator/__pycache__/
 tests/__pycache__/
 # adding untracked files on 2019-08-06 14:07
 tests/test_map_generator/__pycache__/
+__pycache__/
