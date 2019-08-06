@@ -1,0 +1,4 @@
+# .gitignore automatically created on 2019-08-06 11:58
+# adding untracked files on 2019-08-06 11:58
+simple_instance_generator/__pycache__/
+tests/__pycache__/
