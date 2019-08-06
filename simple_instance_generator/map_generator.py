@@ -13,12 +13,20 @@ class MapGenerator:
         self.hub = None
 
     def generate(self, sx, sy, patients, weight, unique=True):
+        MapGenerator._check_size_(sx, sy, patients)
         self._setup_(sx, sy)
         pats = self._gen_patients_(patients, unique)
         out = Map(sx, sy, weight)
         out.set_hub(self.hub)
         out.set_patients(pats)
         return out
+
+
+    @staticmethod
+    def _check_size_(sx, sy, patients):
+        places = (sx * sy) - 1
+        if patients > places:
+            raise ValueError(f"Map {sx}x{sy}: not enough space for {patients}")
 
     def _setup_(self, x, y):
         self.x = x
@@ -34,7 +42,7 @@ class MapGenerator:
         out = ContainerWrapper(unique)
         while len(out) < count:
             tmp = self._rand_point_()
-            if tmp != hub:
+            if tmp != self.hub:
                 out.insert(tmp)
         return out.data
 

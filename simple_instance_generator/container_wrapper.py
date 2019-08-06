@@ -13,3 +13,6 @@ class ContainerWrapper:
             self.data.add(data)
         else:
             self.data.append(data)
+
+    def __len__(self):
+        return len(self.data)
