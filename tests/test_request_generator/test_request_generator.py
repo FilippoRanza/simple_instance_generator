@@ -32,6 +32,6 @@ class TestRequestGenerator(unittest.TestCase):
             s_max = max(day)
             self.assertLessEqual(s_max, SERVICES)
          
-      
+
 if __name__ == "__main__":
     unittest.main()

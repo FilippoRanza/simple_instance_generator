@@ -28,9 +28,9 @@ def conf_arg_parser():
     out.add_argument('-n', '--nurses', required=True,
                      type=int, help='number of nurses')
     out.add_argument('-t', '--time', default=DEFAULT_TIME_SLOT_SIZE,
-                     type=int, 
+                     type=int,
                      help=f'time slot length, in minutes, default {DEFAULT_TIME_SLOT_SIZE}')
-    out.add_argument('-o', '--output', 
+    out.add_argument('-o', '--output',
                      help='output file name')
 
 
@@ -40,7 +40,7 @@ def conf_arg_parser():
 
     out.add_argument('--tmin', type=int, default=DEFAULT_MIN_TIME_SLOT,
                      help=f'minimum number of time slots, default {DEFAULT_MIN_TIME_SLOT}')
-                
+
     out.add_argument('--tmax', type=int, default=DEFAULT_MAX_TIME_SLOT,
                      help=f'maximum number of time slots, default {DEFAULT_MAX_TIME_SLOT}')
 
@@ -79,4 +79,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

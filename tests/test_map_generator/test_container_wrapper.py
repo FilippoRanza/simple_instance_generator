@@ -32,7 +32,7 @@ class TestContainerWrapper(unittest.TestCase):
                 container.insert(i)
         except AttributeError:
             self.fail('this should be a list...')
-        
+
         self.assertEqual(len(container.data), 20)
 
 

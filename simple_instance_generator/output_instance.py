@@ -22,7 +22,7 @@ class OutputInstance:
         self.buff += 'SERVICES:\n'
         for i, s in enumerate(services):
             self.buff += f'\t {i + 1} {s}\n'
-        
+
     def set_requests(self, requests):
         self.buff += 'USER_REQUESTS:\n'
         for i, user in enumerate(requests.T):

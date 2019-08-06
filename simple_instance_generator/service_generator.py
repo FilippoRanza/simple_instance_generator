@@ -12,7 +12,7 @@ class ServiceContainer:
 
     def service_count(self):
         return len(self.service)
-    
+
 
 def make_service(tmin, tmax):
     return randbelow(tmax - tmin + 1) + tmin

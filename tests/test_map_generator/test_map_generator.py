@@ -4,7 +4,7 @@ import unittest
 from secrets import randbelow
 
 from simple_instance_generator.map import Map
-from simple_instance_generator.map_generator import map_generator, MapGenerator
+from simple_instance_generator.map_generator import map_generator
 
 RAND_MAX = 150
 RAND_MIN = 10
@@ -34,16 +34,16 @@ class TestMapGenerator(unittest.TestCase):
 
     def test_size_error(self):
         try:
-            max_count = (SX * SY) - 1 
-            tmp = map_generator(SX, SY, max_count, True, 1)
+            max_count = (SX * SY) - 1
+            map_generator(SX, SY, max_count, True, 1)
         except ValueError:
             self.fail('should not raise error here')
     
         min_error_count = (SX * SY)
         self.assertRaises(ValueError, map_generator, SX, SY, min_error_count, True, 1)
-        
+     
         error_count = min_error_count * 3
-        self.assertRaises(ValueError, map_generator, SX, SY, min_error_count, True, 1)
+        self.assertRaises(ValueError, map_generator, SX, SY, error_count, True, 1)
 
 
 

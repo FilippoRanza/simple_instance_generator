@@ -21,7 +21,7 @@ def make_times(rmin, rmax):
     
 
 class TestServiceGenerator(unittest.TestCase):
-    
+
     def test_make_service(self):
         tmin, tmax = make_times(RANDMIN, RANDMAX)
         delta = tmax - tmin

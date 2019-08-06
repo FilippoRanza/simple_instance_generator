@@ -6,7 +6,7 @@ class Map:
         self.x = sx
         self.y = sy
         self.w = weight
-        
+
     def set_hub(self, hub):
         self.hub = hub
 
