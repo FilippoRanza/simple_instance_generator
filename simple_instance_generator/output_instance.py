@@ -6,6 +6,9 @@ class OutputInstance:
         self.name = outname
         self.buff = ''
 
+    def set_nurse_work_time(self, time):
+        self.buff += f'NURSER_WORK_TIME: {time}\n'
+
     def set_nurses(self, nurses):
         self.buff += f'NURSES: {nurses}\n'
 

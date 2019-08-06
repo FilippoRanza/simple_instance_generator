@@ -9,6 +9,9 @@ DEFAULT_TIME_SLOT_SIZE = 15
 DEFAULT_MIN_TIME_SLOT = 1
 DEFAULT_MAX_TIME_SLOT = 8
 
+# 6 hours
+DEFAULT_NURSE_WORK_TIME = 360
+
 DEFAULT_SIZE_X = 1000
 DEFAULT_SIZE_Y = 1000
 
@@ -29,6 +32,11 @@ def conf_arg_parser():
                      help=f'time slot length, in minutes, default {DEFAULT_TIME_SLOT_SIZE}')
     out.add_argument('-o', '--output', 
                      help='output file name')
+
+
+    out.add_argument('-w', '--working', default=DEFAULT_NURSE_WORK_TIME,
+                     help=f'set nurse work time, in minutes, default {DEFAULT_NURSE_WORK_TIME}',
+                     type=int)
 
     out.add_argument('--tmin', type=int, default=DEFAULT_MIN_TIME_SLOT,
                      help=f'minimum number of time slots, default {DEFAULT_MIN_TIME_SLOT}')
@@ -55,8 +63,9 @@ def generate_instance(args):
     requests = request_generator(world, services, args.days)
 
     writer = OutputInstance(args.output)
-    writer.set_world_map(world)
     writer.set_nurses(args.nurses)
+    writer.set_nurse_work_time(args.working)
+    writer.set_world_map(world)
     writer.set_services(services.service)
     writer.set_requests(requests)
     writer.save()
