@@ -32,7 +32,6 @@ class TestMapGenerator(unittest.TestCase):
         self.assertEqual(map_obj.y, SY)
 
 
-    
     def test_size_error(self):
         try:
             max_count = (SX * SY) - 1 
