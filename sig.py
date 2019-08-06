@@ -6,6 +6,13 @@ from simple_instance_generator import *
 
 DEFAULT_TIME_SLOT_SIZE = 15
 
+DEFAULT_MIN_TIME_SLOT = 1
+DEFAULT_MAX_TIME_SLOT = 8
+
+DEFAULT_SIZE_X = 1000
+DEFAULT_SIZE_Y = 1000
+
+
 def conf_arg_parser():
     out = ArgumentParser()
     
@@ -20,19 +27,37 @@ def conf_arg_parser():
     out.add_argument('-t', '--time', default=DEFAULT_TIME_SLOT_SIZE,
                      type=int, 
                      help=f'time slot length, in minutes, default {DEFAULT_TIME_SLOT_SIZE}')
+    out.add_argument('-o', '--output', 
+                     help='output file name')
+
+    out.add_argument('--tmin', type=int, default=DEFAULT_MIN_TIME_SLOT,
+                     help=f'minimum number of time slots, default {DEFAULT_MIN_TIME_SLOT}')
+                
+    out.add_argument('--tmax', type=int, default=DEFAULT_MAX_TIME_SLOT,
+                     help=f'maximum number of time slots, default {DEFAULT_MAX_TIME_SLOT}')
+
+    out.add_argument('--sizex', type=int, default=DEFAULT_SIZE_X,
+                     help=f'set number of columns in the grid, default {DEFAULT_SIZE_X}')
+
+    out.add_argument('--sizey', type=int, default=DEFAULT_SIZE_Y,
+                     help=f'set number of rows in the grid, default {DEFAULT_SIZE_Y}')
+
+    out.add_argument('--non_unique', default=True,
+                     action='store_false' ,
+                     help='allow non unique patients')
 
     return out
 
 
 def generate_instance(args):
-    world = map_generator(1000, 1000, args.patients, True, 1)
-    services = service_generator(1, 10, args.time, args.services)
+    world = map_generator(args.sizex, args.sizey, args.patients, args.non_unique, 1)
+    services = service_generator(args.tmin, args.tmax, args.time, args.services)
     requests = request_generator(world, services, args.days)
 
-    writer = OutputInstance('test.txt')
+    writer = OutputInstance(args.output)
     writer.set_world_map(world)
     writer.set_nurses(args.nurses)
-    writer.set_services(services)
+    writer.set_services(services.service)
     writer.set_requests(requests)
     writer.save()
 
