@@ -23,7 +23,6 @@ class TestMapGenerator(unittest.TestCase):
         self.assertIsInstance(map_obj, Map)
 
     def test_values(self):
-        
         map_obj = map_generator(SX, SY, PATIENTS, True, 1)
         patients = map_obj.patients
         self.assertIsInstance(patients, set)
