@@ -1,3 +1,11 @@
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+    - os: osx
+
+
+
 language: python
 python:
   - 3.6
