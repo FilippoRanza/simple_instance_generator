@@ -36,6 +36,6 @@ class RequestGenerator:
 
 
 def request_generator(world_map, services, time_horizon):
-    gen = RequestGenerator(world_map.patient_count(), time_horizon, services.services_count())
+    gen = RequestGenerator(world_map.patients_count(), time_horizon, services.service_count())
     return gen.generate()
 
