@@ -4,15 +4,5 @@ python:
 - 3.7
 - 3.6
 
-matrix:
-  include:
-  - os: linux
-  - os: osx
-  - os: windows
-    language: minimal
-    before_install:
-    - choco install python3
-    - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
-
 install: pip install -r requirements.txt
 script: python -m pytest tests
