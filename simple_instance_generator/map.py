@@ -1,6 +1,6 @@
 #! /usr/bin/python3
 
-    
+
 class Map:
     def __init__(self, sx, sy, weight):
         self.x = sx

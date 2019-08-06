@@ -41,7 +41,7 @@ class TestMapGenerator(unittest.TestCase):
     
         min_error_count = (SX * SY)
         self.assertRaises(ValueError, map_generator, SX, SY, min_error_count, True, 1)
-     
+
         error_count = min_error_count * 3
         self.assertRaises(ValueError, map_generator, SX, SY, error_count, True, 1)
 

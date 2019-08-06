@@ -18,7 +18,7 @@ DEFAULT_SIZE_Y = 1000
 
 def conf_arg_parser():
     out = ArgumentParser()
-    
+
     out.add_argument('-d', '--days', required=True,
                      type=int, help='number of days')
     out.add_argument('-p', '--patients', required=True,

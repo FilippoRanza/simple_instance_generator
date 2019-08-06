@@ -17,8 +17,8 @@ def make_times(rmin, rmax):
     if a < b:
         return a, (b + 1)
     return b, (a + 1)
-    
-    
+
+
 
 class TestServiceGenerator(unittest.TestCase):
 

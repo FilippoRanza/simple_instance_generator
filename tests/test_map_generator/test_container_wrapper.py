@@ -20,7 +20,7 @@ class TestContainerWrapper(unittest.TestCase):
             self.fail('this should be a set...')
         
         self.assertEqual(len(container.data), 10)
-        
+
     def test_non_unique(self):
         container = ContainerWrapper(False)
         self.assertIsInstance(container.data, list)
