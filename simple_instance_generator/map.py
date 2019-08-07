@@ -1,5 +1,6 @@
 #! /usr/bin/python3
 
+# Copyright (c) 2019 Filippo Ranza <filipporanza@gmail.com>
 
 class Map:
     def __init__(self, sx, sy, weight):

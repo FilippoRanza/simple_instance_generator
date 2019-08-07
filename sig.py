@@ -1,5 +1,7 @@
 #! /usr/bin/python3
 
+# Copyright (c) 2019 Filippo Ranza <filipporanza@gmail.com>
+
 from argparse import ArgumentParser
 
 from simple_instance_generator import *
