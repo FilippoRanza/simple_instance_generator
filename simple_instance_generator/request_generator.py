@@ -10,13 +10,13 @@ from .normal_rand_int import make_normal_random_int
 
 class RequestGenerator:
 
-    def __init__(self, patients, days, services, mean=0):
+    def __init__(self, patients, days, services, mean=0, variance=1):
         self.mat = numpy.zeros((days, patients), dtype=numpy.uint16)
         self.patient_services = [randbelow(services) for _ in range(patients)]
         self.patient_count = patients
         if not mean:
             mean = self.patient_count // 2
-        self.func = make_normal_random_int(mean, 1, self.patient_count)
+        self.func = make_normal_random_int(mean, variance, 1, self.patient_count)
 
 
     def generate(self):
@@ -41,8 +41,8 @@ class RequestGenerator:
         return out
 
 
-def request_generator(world_map, services, time_horizon, mean_request=0):
+def request_generator(world_map, services, time_horizon, mean_request=0, variance=1):
     gen = RequestGenerator(world_map.patients_count(),
-                           time_horizon, services.service_count(), mean_request)
+                           time_horizon, services.service_count(), mean_request, variance)
     return gen.generate()
 

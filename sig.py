@@ -19,6 +19,8 @@ DEFAULT_SIZE_X = 1000
 DEFAULT_SIZE_Y = 1000
 
 
+DEFAULT_VARIANCE = 1
+
 def conf_arg_parser():
     out = ArgumentParser()
 
@@ -39,6 +41,9 @@ def conf_arg_parser():
 
     out.add_argument('-m', '--mean', default=0, type=int,
                      help='set mean number of request per day, default half of patient number')
+
+    out.add_argument('-v', '--variance', default=DEFAULT_VARIANCE, type=int,
+                     help=f'set variance of request per day, default {DEFAULT_VARIANCE}')
 
     out.add_argument('-w', '--working', default=DEFAULT_NURSE_WORK_TIME,
                      help=f'set nurse work time, in minutes, default {DEFAULT_NURSE_WORK_TIME}',
@@ -71,7 +76,7 @@ def check_args(args):
 def generate_instance(args):
     world = map_generator(args.sizex, args.sizey, args.patients, args.non_unique, 1)
     services = service_generator(args.tmin, args.tmax, args.time, args.services)
-    requests = request_generator(world, services, args.days, args.mean)
+    requests = request_generator(world, services, args.days, args.mean, args.variance)
 
     writer = OutputInstance(args.output)
     writer.set_nurses(args.nurses)
