@@ -20,5 +20,5 @@ def make_normal_random_int(mean, begin, end):
 
     def __out__(count=1):
         return np.random.choice(vals, size=count, p=p)
-    
+
     return __out__
