@@ -3,10 +3,10 @@
 
 import unittest
 from secrets import randbelow
-from simple_instance_generator.normal_rand_int import make_normal_random_int
+from simple_instance_generator.normal_rand_int import factory_normal_random_int
 
 def init_count(mean, var, begin, end):
-    f = make_normal_random_int(mean, var, begin, end)
+    f = factory_normal_random_int(mean, var, begin, end)
     rnd = f(1000000)
     value_count = {i: 0 for i in range(end - begin + 1)}
     for i in rnd:
@@ -16,11 +16,11 @@ def init_count(mean, var, begin, end):
 class TestFunction(unittest.TestCase):
 
     def test_is_function(self):
-        f = make_normal_random_int(5, 1, 0, 10)
+        f = factory_normal_random_int(5, 1, 0, 10)
         self.assertTrue(callable(f))
 
     def test_function_output(self):
-        f = make_normal_random_int(5, 1, 0, 10)
+        f = factory_normal_random_int(5, 1, 0, 10)
         a = f()
         self.assertEqual(len(a), 1)
         size = randbelow(1000) + 500
@@ -35,7 +35,7 @@ class TestValues(unittest.TestCase):
         begin = 0
         end = 10
 
-        f = make_normal_random_int(mean, 1, begin, end)
+        f = factory_normal_random_int(mean, 1, begin, end)
         rnd = f(1000000)
         self.assertEqual(min(rnd), 0)
         self.assertEqual(max(rnd), end)

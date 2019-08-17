@@ -5,7 +5,7 @@
 from secrets import randbelow
 
 import numpy
-from .normal_rand_int import make_normal_random_int
+from .normal_rand_int import factory_normal_random_int
 
 
 class RequestGenerator:
@@ -16,7 +16,7 @@ class RequestGenerator:
         self.patient_count = patients
         if not mean:
             mean = self.patient_count // 2
-        self.func = make_normal_random_int(mean, variance, 1, self.patient_count)
+        self.func = factory_normal_random_int(mean, variance, 1, self.patient_count)
 
 
     def generate(self):
