@@ -2,6 +2,7 @@
 
 # Copyright (c) 2019 Filippo Ranza <filipporanza@gmail.com>
 
+
 from argparse import ArgumentParser
 
 from simple_instance_generator import *
@@ -36,6 +37,9 @@ def conf_arg_parser():
                      help='output file name')
 
 
+    out.add_argument('-m', '--mean', default=0, type=int,
+                     help='set mean number of request per day, default half of patient number')
+
     out.add_argument('-w', '--working', default=DEFAULT_NURSE_WORK_TIME,
                      help=f'set nurse work time, in minutes, default {DEFAULT_NURSE_WORK_TIME}',
                      type=int)
@@ -59,10 +63,15 @@ def conf_arg_parser():
     return out
 
 
+def check_args(args):
+    if args.mean > args.patients:
+        raise ValueError(f'not enough patient {args.patients} for given mean {args.mean}')
+
+
 def generate_instance(args):
     world = map_generator(args.sizex, args.sizey, args.patients, args.non_unique, 1)
     services = service_generator(args.tmin, args.tmax, args.time, args.services)
-    requests = request_generator(world, services, args.days)
+    requests = request_generator(world, services, args.days, args.mean)
 
     writer = OutputInstance(args.output)
     writer.set_nurses(args.nurses)
@@ -77,7 +86,13 @@ def main():
     parser = conf_arg_parser()
     args = parser.parse_args()
     if args:
-        generate_instance(args)
+        try:
+            check_args(args)
+        except ValueError as err:
+            print(err)
+            print('exit now')
+        else:
+            generate_instance(args)
 
 if __name__ == "__main__":
     main()
