@@ -16,8 +16,8 @@ class SerializeText(InstanceStore):
         return out
 
     @staticmethod
-    def _patients_to_str_(patients):
-        out = 'PATIENTS:\n'
+    def _patients_to_str_(key, patients):
+        out = f'{key}:\n'
         for patient in patients:
             for k, v in patient.items():
                 out += f'\t{k}:{v}\n'
@@ -26,9 +26,10 @@ class SerializeText(InstanceStore):
 
     def serialize(self):
         out = ''
+        patients_key = self.translate.get_name('PATIENTS')
         for k, v in self.store.items():
-            if k == 'PATIENTS':
-                out += SerializeText._patients_to_str_(v)
+            if k == patients_key:
+                out += SerializeText._patients_to_str_(patients_key, v)
             else:
                 out += SerializeText._item_to_str_(k, v)
 
