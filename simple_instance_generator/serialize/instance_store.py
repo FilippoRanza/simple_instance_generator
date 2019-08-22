@@ -14,7 +14,7 @@ class InstanceStore:
 
     def set_nurses(self, nurses):
         self.store['NURSES'] = nurses
-       
+
     def set_world_map(self, world_map):
         self.store['HUB'] = world_map.hub
         self.patients = world_map.patients

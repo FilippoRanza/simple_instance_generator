@@ -88,16 +88,6 @@ def generate_instance(args):
 
     print(writer.serialize())
 
-    """
-    writer = OutputInstance(args.output)
-    writer.set_nurses(args.nurses)
-    writer.set_nurse_work_time(args.working)
-    writer.set_world_map(world)
-    writer.set_services(services.service)
-    writer.set_requests(requests)
-    writer.save()
-    """
-
 
 def main():
     parser = conf_arg_parser()

@@ -31,5 +31,5 @@ class SerializeText(InstanceStore):
                 out += SerializeText._patients_to_str_(v)
             else:
                 out += SerializeText._item_to_str_(k, v)
-             
+
         return out
