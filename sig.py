@@ -90,14 +90,14 @@ def generate_instance(args):
     services = service_generator(args.tmin, args.tmax, args.time, args.services)
     requests = request_generator(world, services, args.days, args.mean, args.variance)
 
-    writer = serialize_factory(args.serialize, args.translate)
-    writer.set_nurses(args.nurses)
-    writer.set_nurse_work_time(args.working)
-    writer.set_world_map(world)
-    writer.set_services(services.service)
-    writer.set_requests(requests)
+    serialize = serialize_factory(args.serialize, args.translate)
+    serialize.set_nurses(args.nurses)
+    serialize.set_nurse_work_time(args.working)
+    serialize.set_world_map(world)
+    serialize.set_services(services.service)
+    serialize.set_requests(requests)
 
-    output = writer.serialize()
+    output = serialize.serialize()
     if args.output:
         with open(args.output, 'w') as file:
             print(output, file=file)
