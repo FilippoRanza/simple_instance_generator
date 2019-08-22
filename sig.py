@@ -66,6 +66,14 @@ def conf_arg_parser():
                      action='store_false' ,
                      help='allow non unique patients')
 
+    group = out.add_mutually_exclusive_group()
+    group.add_argument('-j', '--json', dest='serialize', 
+                       action='store_const', const='json', default='text',
+                       help='output generated instance as json, default plain text')
+    group.add_argument('-y', '--yaml', dest='serialize',
+                       action='store_const', const='yaml', default='text',
+                       help='output generated instance as yaml, default plain text')
+
     return out
 
 
@@ -79,14 +87,19 @@ def generate_instance(args):
     services = service_generator(args.tmin, args.tmax, args.time, args.services)
     requests = request_generator(world, services, args.days, args.mean, args.variance)
 
-    writer = serialize_factory('text')
+    writer = serialize_factory(args.serialize)
     writer.set_nurses(args.nurses)
     writer.set_nurse_work_time(args.working)
     writer.set_world_map(world)
     writer.set_services(services.service)
     writer.set_requests(requests)
 
-    print(writer.serialize())
+    output = writer.serialize()
+    if args.output:
+        with open(args.output, 'w') as file:
+            print(output, file=file)
+    else:
+        print(output)
 
 
 def main():
