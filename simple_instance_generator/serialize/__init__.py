@@ -2,4 +2,4 @@
 
 # Copyright (c) 2019 Filippo Ranza <filipporanza@gmail.com>
 
-from .instance_store import InstanceStore
+from .serialize_json import SerializeJson

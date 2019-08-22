@@ -27,7 +27,10 @@ class InstanceStore:
         self.requests = requests.T
         self._generate_users_()
 
+    def serialize(self):
+        raise NotImplementedError('User subclasses')
+
     def _generate_users_(self):
         if self.patients and (self.requests is not None) :
-            tmp = [{'ID': p, 'REQUEST': r} for p, r in zip(self.patients, self.requests)]
+            tmp = [{'ID': p, 'REQUEST': r.tolist()} for p, r in zip(self.patients, self.requests)]
             self.store['PATIENTS'] = tmp
