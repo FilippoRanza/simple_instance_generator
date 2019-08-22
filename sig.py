@@ -7,6 +7,7 @@ from argparse import ArgumentParser
 
 from simple_instance_generator import *
 
+
 DEFAULT_TIME_SLOT_SIZE = 15
 
 DEFAULT_MIN_TIME_SLOT = 1
@@ -78,6 +79,16 @@ def generate_instance(args):
     services = service_generator(args.tmin, args.tmax, args.time, args.services)
     requests = request_generator(world, services, args.days, args.mean, args.variance)
 
+    writer = InstanceStore()
+    writer.set_nurses(args.nurses)
+    writer.set_nurse_work_time(args.working)
+    writer.set_world_map(world)
+    writer.set_services(services.service)
+    writer.set_requests(requests)
+
+    print(writer.store)
+
+    """
     writer = OutputInstance(args.output)
     writer.set_nurses(args.nurses)
     writer.set_nurse_work_time(args.working)
@@ -85,6 +96,7 @@ def generate_instance(args):
     writer.set_services(services.service)
     writer.set_requests(requests)
     writer.save()
+    """
 
 
 def main():
