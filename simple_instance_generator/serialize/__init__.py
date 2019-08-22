@@ -3,3 +3,4 @@
 # Copyright (c) 2019 Filippo Ranza <filipporanza@gmail.com>
 
 from .serialize_json import SerializeJson
+from .serialize_yaml import SerializeYaml

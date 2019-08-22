@@ -79,7 +79,7 @@ def generate_instance(args):
     services = service_generator(args.tmin, args.tmax, args.time, args.services)
     requests = request_generator(world, services, args.days, args.mean, args.variance)
 
-    writer = SerializeJson()
+    writer = SerializeYaml()
     writer.set_nurses(args.nurses)
     writer.set_nurse_work_time(args.working)
     writer.set_world_map(world)
