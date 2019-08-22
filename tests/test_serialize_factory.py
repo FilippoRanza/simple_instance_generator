@@ -11,15 +11,15 @@ from simple_instance_generator.serialize.serialize_yaml import SerializeYaml
 class TestSerializeFactory(unittest.TestCase):
 
     def test_success(self):
-        self.assertIsInstance(serialize_factory('text'), SerializeText)
-        self.assertIsInstance(serialize_factory('json'), SerializeJson)
-        self.assertIsInstance(serialize_factory('yaml'), SerializeYaml)
+        self.assertIsInstance(serialize_factory('text', None), SerializeText)
+        self.assertIsInstance(serialize_factory('json', None), SerializeJson)
+        self.assertIsInstance(serialize_factory('yaml', None), SerializeYaml)
 
 
     def test_error(self):
         for wrong in ['something', 'toxt', 'jsons']:
             with self.assertRaisesRegex(ValueError, f'Unknown serializer {wrong}'):
-                serialize_factory(wrong)
+                serialize_factory(wrong, None)
            
 
 if __name__ == "__main__":

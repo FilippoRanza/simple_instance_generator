@@ -6,8 +6,8 @@ import yaml
 from .instance_store import InstanceStore
 
 class SerializeYaml(InstanceStore):
-    def __init__(self):
-        super(SerializeYaml, self).__init__()
+    def __init__(self, translate_file):
+        super(SerializeYaml, self).__init__(translate_file)
 
     def serialize(self):
         return yaml.safe_dump(self.store)

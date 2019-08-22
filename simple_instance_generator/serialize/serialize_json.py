@@ -6,8 +6,8 @@ import json
 from .instance_store import InstanceStore
 
 class SerializeJson(InstanceStore):
-    def __init__(self):
-        super(SerializeJson, self).__init__()
+    def __init__(self, translate_file):
+        super(SerializeJson, self).__init__(translate_file)
 
     def serialize(self):
         return json.dumps(self.store)

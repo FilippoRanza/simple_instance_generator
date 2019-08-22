@@ -66,6 +66,9 @@ def conf_arg_parser():
                      action='store_false' ,
                      help='allow non unique patients')
 
+    out.add_argument('--translate', default=None,
+                     help='specify a yaml translation file for the serializer')
+
     group = out.add_mutually_exclusive_group()
     group.add_argument('-j', '--json', dest='serialize', 
                        action='store_const', const='json', default='text',
@@ -87,7 +90,7 @@ def generate_instance(args):
     services = service_generator(args.tmin, args.tmax, args.time, args.services)
     requests = request_generator(world, services, args.days, args.mean, args.variance)
 
-    writer = serialize_factory(args.serialize)
+    writer = serialize_factory(args.serialize, args.translate)
     writer.set_nurses(args.nurses)
     writer.set_nurse_work_time(args.working)
     writer.set_world_map(world)

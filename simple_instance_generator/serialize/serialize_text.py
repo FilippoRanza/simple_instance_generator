@@ -7,8 +7,8 @@ from .instance_store import InstanceStore
 
 
 class SerializeText(InstanceStore):
-    def __init__(self):
-        super(SerializeText, self).__init__()
+    def __init__(self, translate_file):
+        super(SerializeText, self).__init__(translate_file)
 
     @staticmethod
     def _item_to_str_(key, value):

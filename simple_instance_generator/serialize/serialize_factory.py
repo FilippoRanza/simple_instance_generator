@@ -19,8 +19,8 @@ def generate_error(name):
     raise ValueError(msg)
 
 
-def serialize_factory(serialization_name):
+def serialize_factory(serialization_name, translate_file):
     serializer = SERIALIZERS.get(serialization_name)
     if serializer is None:
         generate_error(serialization_name)
-    return serializer()
+    return serializer(translate_file)
