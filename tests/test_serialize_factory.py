@@ -20,7 +20,7 @@ class TestSerializeFactory(unittest.TestCase):
         for wrong in ['something', 'toxt', 'jsons']:
             with self.assertRaisesRegex(ValueError, f'Unknown serializer {wrong}'):
                 serialize_factory(wrong, None)
-           
+
 
 if __name__ == "__main__":
-   unittest.main() 
+   unittest.main()

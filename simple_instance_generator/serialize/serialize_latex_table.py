@@ -12,7 +12,7 @@ class SubTable:
         self.buff = ''
 
     def add_row(self, row):
-        tmp = map(lambda x: str(x), row)
+        tmp = map(str, row)
         row = ' & '.join(tmp) + ' \\\\\n'
         self.buff += row
 
@@ -36,7 +36,7 @@ class LatexTable:
         if self.curr:
             self.tables.append(self.curr)
         self.curr = SubTable(self.cols, title)
-       
+
     def add_row(self, *row):
         self.curr.add_row(row)
 
@@ -58,7 +58,7 @@ class SerializeLatexTable(InstanceStore):
 
     def __init__(self, translate_file):
         super(SerializeLatexTable, self).__init__(translate_file)
-        self.table = LatexTable(2) 
+        self.table = LatexTable(2)
         self.table.add_caption('INSERT CAPTION')
 
     def _hub_info_(self):

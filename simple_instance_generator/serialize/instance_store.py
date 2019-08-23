@@ -5,12 +5,12 @@
 import yaml
 
 class Translate:
-    
+
     def __init__(self, file_name):
         if file_name:
            with open(file_name) as file:
                self.translate = yaml.safe_load(file)
-        else: 
+        else:
             self.translate = {}
 
     def get_name(self, key):

@@ -71,7 +71,7 @@ def conf_arg_parser():
 
     group = out.add_mutually_exclusive_group()
     for serializer in available_serializers():
-        group.add_argument(f'--{serializer}', dest='serialize', 
+        group.add_argument(f'--{serializer}', dest='serialize',
                            action='store_const', const=serializer, default='text',
                            help=f'output generated instance as {serializer}, default plain text')
 
