@@ -4,7 +4,7 @@
 
 from secrets import randbelow
 
-from .map import Map
+from .map import Map, build_distances
 from .container_wrapper import ContainerWrapper
 
 class MapGenerator:
@@ -51,4 +51,6 @@ class MapGenerator:
 
 def map_generator(size_x, size_y, patient_count, unique, weight):
     gen = MapGenerator()
-    return gen.generate(size_x, size_y, patient_count, weight, unique)
+    world = gen.generate(size_x, size_y, patient_count, weight, unique)
+    #build_distances(world)
+    return  world
