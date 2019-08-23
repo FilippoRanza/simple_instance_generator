@@ -13,7 +13,7 @@ class TestDistances(unittest.TestCase):
         self.assertEqual(distance((0, 0), (0, 3)), 3)
         self.assertEqual(distance((4, 5), (4, 5)), 0)
         self.assertEqual(distance((0, 3), (4, 6)), 5)
-        
+
     def test_simmetry(self):
         self.assertEqual(distance((4, 5), (7, -8)), distance((7, -8), (4, 5)))
         self.assertEqual(distance((-4, 1.4), (-7.8, 4)), distance((-7.8, 4), (-4, 1.4)))
