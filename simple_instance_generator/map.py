@@ -36,7 +36,9 @@ def build_patients_distances(world: Map):
     out = init_distances(world)
     for i, start in enumerate(world.patients):
         for j, dest in enumerate(world.patients):
-            out[i][j] = distance(start, dest)
+            if j >= i:
+                out[j][i] = out[i][j] = distance(start, dest)
+
     return world.w * out
 
 
