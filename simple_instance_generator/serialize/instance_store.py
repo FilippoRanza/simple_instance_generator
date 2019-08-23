@@ -20,6 +20,14 @@ class Translate:
 
 class InstanceStore:
 
+    NURSES_WORK_TIME = 'NURSES_WORK_TIME'
+    NURSES = 'NURSES'
+    HUB = 'HUB'
+    SERVICES = 'SERVICES'
+    ID = 'ID'
+    REQUEST = 'REQUEST'
+    PATIENTS = 'PATIENTS'
+
     def __init__(self, translate_file):
         self.store = {}
         self.patients = None
@@ -27,10 +35,10 @@ class InstanceStore:
         self.translate = Translate(translate_file)
 
     def set_nurse_work_time(self, time):
-        self._store_value_('NURSES_WORK_TIME', time)
+        self._store_value_(InstanceStore.NURSES_WORK_TIME, time)
 
     def set_nurses(self, nurses):
-        self._store_value_('NURSES', nurses)
+        self._store_value_(InstanceStore.NURSES, nurses)
 
 
     def set_world_map(self, world_map):
@@ -39,7 +47,7 @@ class InstanceStore:
         self._generate_users_()
 
     def set_services(self, services):
-        self._store_value_('SERVICES', services)
+        self._store_value_(InstanceStore.SERVICES, services)
 
     def set_requests(self, requests):
         self.requests = requests.T
@@ -49,11 +57,11 @@ class InstanceStore:
         raise NotImplementedError('User subclasses')
 
     def _generate_users_(self):
-        id_name = self.translate.get_name('ID')
-        request_name = self.translate.get_name('REQUEST')
+        id_name = self.translate.get_name(InstanceStore.ID)
+        request_name = self.translate.get_name(InstanceStore.REQUEST)
         if self.patients and (self.requests is not None) :
             tmp = [{id_name: p, request_name: r.tolist()} for p, r in zip(self.patients, self.requests)]
-            self._store_value_('PATIENTS', tmp)
+            self._store_value_(InstanceStore.PATIENTS, tmp)
 
     def _store_value_(self, key, value):
         key = self.translate.get_name(key)

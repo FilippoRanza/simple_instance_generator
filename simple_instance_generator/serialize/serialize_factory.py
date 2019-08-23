@@ -5,13 +5,17 @@
 from .serialize_json import SerializeJson
 from .serialize_yaml import SerializeYaml
 from .serialize_text import SerializeText
+from .serialize_latex_table import SerializeLatexTable
 
 SERIALIZERS = {
+    'latex': SerializeLatexTable,
     'json': SerializeJson,
     'yaml': SerializeYaml,
     'text': SerializeText
 }
 
+def available_serializers():
+    return SERIALIZERS.keys()
 
 def generate_error(name):
     msg = f'Unknown serializer {name}\n Known serializers:\n'

@@ -70,12 +70,10 @@ def conf_arg_parser():
                      help='specify a yaml translation file for the serializer')
 
     group = out.add_mutually_exclusive_group()
-    group.add_argument('-j', '--json', dest='serialize', 
-                       action='store_const', const='json', default='text',
-                       help='output generated instance as json, default plain text')
-    group.add_argument('-y', '--yaml', dest='serialize',
-                       action='store_const', const='yaml', default='text',
-                       help='output generated instance as yaml, default plain text')
+    for serializer in available_serializers():
+        group.add_argument(f'--{serializer}', dest='serialize', 
+                           action='store_const', const=serializer, default='text',
+                           help=f'output generated instance as {serializer}, default plain text')
 
     return out
 

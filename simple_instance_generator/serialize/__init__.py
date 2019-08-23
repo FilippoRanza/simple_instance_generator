@@ -2,4 +2,4 @@
 
 # Copyright (c) 2019 Filippo Ranza <filipporanza@gmail.com>
 
-from .serialize_factory import serialize_factory
+from .serialize_factory import serialize_factory, available_serializers
