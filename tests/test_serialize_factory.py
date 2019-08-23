@@ -6,14 +6,13 @@ import unittest
 from simple_instance_generator import serialize_factory
 from simple_instance_generator.serialize.serialize_json import SerializeJson
 from simple_instance_generator.serialize.serialize_text import SerializeText
-from simple_instance_generator.serialize.serialize_yaml import SerializeYaml
+
 
 class TestSerializeFactory(unittest.TestCase):
 
     def test_success(self):
         self.assertIsInstance(serialize_factory('text', None), SerializeText)
         self.assertIsInstance(serialize_factory('json', None), SerializeJson)
-        self.assertIsInstance(serialize_factory('yaml', None), SerializeYaml)
 
 
     def test_error(self):
