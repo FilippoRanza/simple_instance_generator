@@ -52,5 +52,5 @@ class MapGenerator:
 def map_generator(size_x, size_y, patient_count, unique, weight):
     gen = MapGenerator()
     world = gen.generate(size_x, size_y, patient_count, weight, unique)
-    #build_distances(world)
+    build_distances(world)
     return  world

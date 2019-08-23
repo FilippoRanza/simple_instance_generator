@@ -27,6 +27,9 @@ class InstanceStore:
     ID = 'ID'
     REQUEST = 'REQUEST'
     PATIENTS = 'PATIENTS'
+    HUB_DISTANCE = 'HUB_DISTANCE'
+    PATIENTS_DISTANCE = 'PATIENTS_DISTANCE'
+
 
     def __init__(self, translate_file):
         self.store = {}
@@ -42,7 +45,9 @@ class InstanceStore:
 
 
     def set_world_map(self, world_map):
-        self._store_value_('HUB', world_map.hub)
+        self._store_value_(InstanceStore.HUB, world_map.hub)
+        self._store_value_(InstanceStore.HUB_DISTANCE, world_map.hub_distances)
+        self._store_value_(InstanceStore.PATIENTS_DISTANCE, world_map.patients_distances.tolist())
         self.patients = world_map.patients
         self._generate_users_()
 

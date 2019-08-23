@@ -35,8 +35,9 @@ class TestMapGenerator(unittest.TestCase):
 
     def test_size_error(self):
         try:
-            max_count = (SX * SY) - 1
-            map_generator(SX, SY, max_count, True, 1)
+            sx, sy = 10, 10
+            max_count = (sx * sy) - 1
+            map_generator(sx, sy, max_count, True, 1)
         except ValueError:
             self.fail('should not raise error here')
 
