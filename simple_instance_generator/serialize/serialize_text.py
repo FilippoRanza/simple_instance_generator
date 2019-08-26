@@ -4,11 +4,12 @@
 
 
 from .instance_store import InstanceStore
+from .serializer import Serializer
 
 
-class SerializeText(InstanceStore):
-    def __init__(self, translate_file):
-        super(SerializeText, self).__init__(translate_file)
+class SerializeText(Serializer):
+    def __init__(self):
+        super(SerializeText, self).__init__()
 
     @staticmethod
     def _item_to_str_(key, value):
@@ -24,6 +25,7 @@ class SerializeText(InstanceStore):
             out += '\n'
         return out
 
+    @staticmethod
     def _patient_distance_to_str_(key, distance):
         out = f'{key}:\n'
         for dist in distance:
@@ -31,18 +33,19 @@ class SerializeText(InstanceStore):
             out += f'\t{line}\n'
         return out
 
+    @staticmethod
     def _hub_distance_to_str_(key, distance):
         out = f'{key}:\n\t'
         out += ', '.join(map(lambda x: f'{x:.3f}', distance)) + '\n'
         return out
 
 
-    def serialize(self):
+    def serialize(self, store, translate):
         out = ''
-        patients_key = self.translate.get_name(InstanceStore.PATIENTS)
-        patient_distance_key = self.translate.get_name(InstanceStore.PATIENTS_DISTANCE)
-        hub_distance_key = self.translate.get_name(InstanceStore.HUB_DISTANCE)
-        for k, v in self.store.items():
+        patients_key = translate.get_name(InstanceStore.PATIENTS)
+        patient_distance_key = translate.get_name(InstanceStore.PATIENTS_DISTANCE)
+        hub_distance_key = translate.get_name(InstanceStore.HUB_DISTANCE)
+        for k, v in store.items():
             if k == patients_key:
                 out += SerializeText._patients_to_str_(patients_key, v)
             elif k == patient_distance_key:

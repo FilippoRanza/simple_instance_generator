@@ -2,20 +2,8 @@
 
 # Copyright (c) 2019 Filippo Ranza <filipporanza@gmail.com>
 
-import yaml
-
-class Translate:
-
-    def __init__(self, file_name):
-        if file_name:
-           with open(file_name) as file:
-               self.translate = yaml.safe_load(file)
-        else:
-            self.translate = {}
-
-    def get_name(self, key):
-        out = self.translate.get(key, key)
-        return out
+from .translate import Translate
+from .serializer import Serializer
 
 
 class InstanceStore:
@@ -31,7 +19,8 @@ class InstanceStore:
     PATIENTS_DISTANCE = 'PATIENTS_DISTANCE'
 
 
-    def __init__(self, translate_file):
+    def __init__(self, translate_file, serializer: Serializer):
+        self.serializer = serializer
         self.store = {}
         self.patients = None
         self.requests = None
@@ -59,7 +48,7 @@ class InstanceStore:
         self._generate_users_()
 
     def serialize(self):
-        raise NotImplementedError('User subclasses')
+        return self.serializer.serialize(self.store, self.translate)
 
     def _generate_users_(self):
         id_name = self.translate.get_name(InstanceStore.ID)

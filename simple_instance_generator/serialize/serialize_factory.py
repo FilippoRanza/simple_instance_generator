@@ -5,6 +5,7 @@
 from .serialize_json import SerializeJson
 from .serialize_text import SerializeText
 from .serialize_latex_table import SerializeLatexTable
+from .instance_store import InstanceStore
 
 SERIALIZERS = {
     'latex': SerializeLatexTable,
@@ -25,4 +26,6 @@ def serialize_factory(serialization_name, translate_file):
     serializer = SERIALIZERS.get(serialization_name)
     if serializer is None:
         generate_error(serialization_name)
-    return serializer(translate_file)
+
+    tmp = serializer()
+    return InstanceStore(translate_file, tmp)

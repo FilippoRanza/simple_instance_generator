@@ -3,6 +3,7 @@
 # Copyright (c) 2019 Filippo Ranza <filipporanza@gmail.com>
 
 
+from .serializer import Serializer
 from .instance_store import InstanceStore
 
 class SubTable:
@@ -54,40 +55,40 @@ class LatexTable:
 
 
 
-class SerializeLatexTable(InstanceStore):
+class SerializeLatexTable(Serializer):
 
-    def __init__(self, translate_file):
-        super(SerializeLatexTable, self).__init__(translate_file)
+    def __init__(self):
+        super(SerializeLatexTable, self).__init__()
         self.table = LatexTable(2)
         self.table.add_caption('INSERT CAPTION')
 
-    def _hub_info_(self):
+    def _hub_info_(self, store, translate):
         self.table.add_title('NURSE  TITLE')
         for key in [InstanceStore.NURSES, InstanceStore.NURSES_WORK_TIME, InstanceStore.HUB]:
-            real_key = self.translate.get_name(key)
-            self.table.add_row(real_key, self.store[real_key])
+            real_key = translate.get_name(key)
+            self.table.add_row(real_key, store[real_key])
 
-    def _service_info_(self):
+    def _service_info_(self, store, translate):
         self.table.add_title('SERVICE TITLE')
         self.table.add_row('ID', 'COST')
-        key = self.translate.get_name(InstanceStore.SERVICES)
-        for data in enumerate(self.store[key], start=1):
+        key = translate.get_name(InstanceStore.SERVICES)
+        for data in enumerate(store[key], start=1):
             self.table.add_row(*data)
 
-    def _patients_requests_(self):
+    def _patients_requests_(self, store, translate):
         self.table.add_title('PATIENTS TITLE')
 
-        loc = self.translate.get_name(InstanceStore.ID)
-        ser = self.translate.get_name(InstanceStore.REQUEST)
+        loc = translate.get_name(InstanceStore.ID)
+        ser = translate.get_name(InstanceStore.REQUEST)
         self.table.add_row(loc, ser)
-        key = self.translate.get_name(InstanceStore.PATIENTS)
-        for patient in self.store[key]:
+        key = translate.get_name(InstanceStore.PATIENTS)
+        for patient in store[key]:
             self.table.add_row(patient[loc], patient[ser])
 
 
 
-    def serialize(self):
-        self._hub_info_()
-        self._service_info_()
-        self._patients_requests_()
+    def serialize(self, store, translate):
+        self._hub_info_(store, translate)
+        self._service_info_(store, translate)
+        self._patients_requests_(store, translate)
         return self.table.close_table()
