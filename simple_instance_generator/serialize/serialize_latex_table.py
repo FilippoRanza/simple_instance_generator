@@ -8,7 +8,7 @@ from .instance_store import InstanceStore
 class SubTable:
 
     def __init__(self, cols, title):
-        self.title = f'\multicolumn{{{cols}}}{{|c|}}{{{title}}}\\\\\n\hline\n'
+        self.title = f'\\multicolumn{{{cols}}}{{|c|}}{{{title}}}\\\\\n\\hline\n'
         self.buff = ''
 
     def add_row(self, row):
@@ -23,14 +23,14 @@ class SubTable:
 class LatexTable:
     def __init__(self, columns):
         head = '|'.join([' c '] * columns)
-        self.head = f'\\begin{{tabular}}{{|{head}|}}\n\hline'
+        self.head = f'\\begin{{tabular}}{{|{head}|}}\n\\hline'
         self.caption = ''
         self.cols = columns
         self.tables = []
         self.curr = None
 
     def add_caption(self, caption):
-        self.caption += f'\caption{{{caption}}}\\\\\n'
+        self.caption += f'\\caption{{{caption}}}\\\\\n'
 
     def add_title(self, title):
         if self.curr:
@@ -43,12 +43,12 @@ class LatexTable:
     def close_table(self):
         if self.curr:
             self.tables.append(self.curr)
-        out = '\\begin{table}\n\centering\n'
+        out = '\\begin{table}\n\\centering\n'
         out += self.caption
         out += self.head
-        out += '\n\hline\n\hline\n'.join(map(lambda s: s.build_table(), self.tables))
-        out += f'\hline\n\end{{tabular}}'
-        out += '\end{table}'
+        out += '\n\\hline\n\\hline\n'.join(map(lambda s: s.build_table(), self.tables))
+        out += f'\\hline\n\\end{{tabular}}'
+        out += '\\end{table}'
 
         return out
 
