@@ -11,8 +11,8 @@ from simple_instance_generator.serialize.serialize_text import SerializeText
 class TestSerializeFactory(unittest.TestCase):
 
     def test_success(self):
-        self.assertIsInstance(serialize_factory('text', None), SerializeText)
-        self.assertIsInstance(serialize_factory('json', None), SerializeJson)
+        self.assertIsInstance(serialize_factory('text', None).serializer, SerializeText)
+        self.assertIsInstance(serialize_factory('json', None).serializer, SerializeJson)
 
 
     def test_error(self):
