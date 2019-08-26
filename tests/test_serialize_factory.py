@@ -11,14 +11,14 @@ from simple_instance_generator.serialize.serialize_text import SerializeText
 class TestSerializeFactory(unittest.TestCase):
 
     def test_success(self):
-        self.assertIsInstance(serialize_factory('text', None).serializer, SerializeText)
-        self.assertIsInstance(serialize_factory('json', None).serializer, SerializeJson)
+        self.assertIsInstance(serialize_factory('text').serializer, SerializeText)
+        self.assertIsInstance(serialize_factory('json').serializer, SerializeJson)
 
 
     def test_error(self):
         for wrong in ['something', 'toxt', 'jsons']:
             with self.assertRaisesRegex(ValueError, f'Unknown serializer {wrong}'):
-                serialize_factory(wrong, None)
+                serialize_factory(wrong)
 
 
 if __name__ == "__main__":

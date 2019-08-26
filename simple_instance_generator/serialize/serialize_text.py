@@ -40,11 +40,11 @@ class SerializeText(Serializer):
         return out
 
 
-    def serialize(self, store, translate):
+    def serialize(self, store):
         out = ''
-        patients_key = translate.get_name(InstanceStore.PATIENTS)
-        patient_distance_key = translate.get_name(InstanceStore.PATIENTS_DISTANCE)
-        hub_distance_key = translate.get_name(InstanceStore.HUB_DISTANCE)
+        patients_key = InstanceStore.PATIENTS
+        patient_distance_key = InstanceStore.PATIENTS_DISTANCE
+        hub_distance_key = InstanceStore.HUB_DISTANCE
         for k, v in store.items():
             if k == patients_key:
                 out += SerializeText._patients_to_str_(patients_key, v)

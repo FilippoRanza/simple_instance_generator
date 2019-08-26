@@ -6,6 +6,6 @@ import json
 from .serializer import Serializer
 
 class SerializeJson(Serializer):
-    def serialize(self, store, translate):
+    def serialize(self, store):
         return json.dumps(store)
 

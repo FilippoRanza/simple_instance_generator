@@ -62,33 +62,32 @@ class SerializeLatexTable(Serializer):
         self.table = LatexTable(2)
         self.table.add_caption('INSERT CAPTION')
 
-    def _hub_info_(self, store, translate):
+    def _hub_info_(self, store):
         self.table.add_title('NURSE  TITLE')
         for key in [InstanceStore.NURSES, InstanceStore.NURSES_WORK_TIME, InstanceStore.HUB]:
-            real_key = translate.get_name(key)
-            self.table.add_row(real_key, store[real_key])
+            self.table.add_row(key, store[key])
 
-    def _service_info_(self, store, translate):
+    def _service_info_(self, store):
         self.table.add_title('SERVICE TITLE')
         self.table.add_row('ID', 'COST')
-        key = translate.get_name(InstanceStore.SERVICES)
+        key = InstanceStore.SERVICES
         for data in enumerate(store[key], start=1):
             self.table.add_row(*data)
 
-    def _patients_requests_(self, store, translate):
+    def _patients_requests_(self, store):
         self.table.add_title('PATIENTS TITLE')
 
-        loc = translate.get_name(InstanceStore.ID)
-        ser = translate.get_name(InstanceStore.REQUEST)
+        loc = InstanceStore.ID
+        ser = InstanceStore.REQUEST
         self.table.add_row(loc, ser)
-        key = translate.get_name(InstanceStore.PATIENTS)
+        key = InstanceStore.PATIENTS
         for patient in store[key]:
             self.table.add_row(patient[loc], patient[ser])
 
 
 
-    def serialize(self, store, translate):
-        self._hub_info_(store, translate)
-        self._service_info_(store, translate)
-        self._patients_requests_(store, translate)
+    def serialize(self, store):
+        self._hub_info_(store)
+        self._service_info_(store)
+        self._patients_requests_(store)
         return self.table.close_table()

@@ -5,5 +5,5 @@
 
 class Serializer:
 
-    def serialize(self, store, translate) -> str:
+    def serialize(self, store) -> str:
         raise NotImplementedError()
