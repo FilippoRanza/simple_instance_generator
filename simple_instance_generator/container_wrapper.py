@@ -34,7 +34,7 @@ class UniqueStrategy(ContainerStrategy):
 class ListStrategy(ContainerStrategy):
     def __init__(self):
         self.coll = list()
-    
+
     def __len__(self):
         return len(self.coll)
 
