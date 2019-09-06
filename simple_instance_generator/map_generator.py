@@ -5,7 +5,7 @@
 from secrets import randbelow
 
 from .map import Map, build_distances
-from .container_wrapper import ContainerWrapper
+from .container_wrapper import container_factory
 
 class MapGenerator:
 
@@ -41,12 +41,12 @@ class MapGenerator:
         return x, y
 
     def _gen_patients_(self, count, unique):
-        out = ContainerWrapper(unique)
+        out = container_factory(unique)
         while len(out) < count:
             tmp = self._rand_point_()
             if tmp != self.hub:
                 out.insert(tmp)
-        return out.data
+        return out.get_collection()
 
 
 def map_generator(size_x, size_y, patient_count, unique, weight):
