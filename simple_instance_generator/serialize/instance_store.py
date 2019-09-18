@@ -16,6 +16,10 @@ class InstanceStore:
     PATIENTS = 'PATIENTS'
     HUB_DISTANCE = 'HUB_DISTANCE'
     PATIENTS_DISTANCE = 'PATIENTS_DISTANCE'
+    MAP_SIZE_X = 'MAP_SIZE_X'
+    MAP_SIZE_Y = 'MAP_SIZE_Y'
+    BASE_TIME_SLOT = 'BASE_TIME_SLOT'
+
 
 
     def __init__(self, serializer: Serializer):
@@ -44,6 +48,13 @@ class InstanceStore:
     def set_requests(self, requests):
         self.requests = requests.T
         self._generate_users_()
+
+    def set_map_size(self, sizex, sizey):
+        self.store[InstanceStore.MAP_SIZE_X] = sizex
+        self.store[InstanceStore.MAP_SIZE_Y] = sizey
+
+    def set_base_time_slot(self, time_slot):
+        self.store[InstanceStore.BASE_TIME_SLOT] = time_slot
 
     def serialize(self):
         return self.serializer.serialize(self.store)

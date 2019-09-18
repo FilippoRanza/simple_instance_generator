@@ -91,6 +91,8 @@ def generate_instance(args):
     serialize.set_world_map(world)
     serialize.set_services(services.service)
     serialize.set_requests(requests)
+    serialize.set_map_size(args.sizex, args.sizey)
+    serialize.set_base_time_slot(args.time)
 
     output = serialize.serialize()
     if args.output:
