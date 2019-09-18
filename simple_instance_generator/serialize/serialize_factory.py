@@ -4,11 +4,9 @@
 
 from .serialize_json import SerializeJson
 from .serialize_text import SerializeText
-from .serialize_latex_table import SerializeLatexTable
 from .instance_store import InstanceStore
 
 SERIALIZERS = {
-    'latex': SerializeLatexTable,
     'json': SerializeJson,
     'text': SerializeText
 }
